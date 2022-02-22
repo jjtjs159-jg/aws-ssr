@@ -1,18 +1,19 @@
-FROM node:16
+# Dockerfile
 
-WORKDIR /usr/src/app
+# base image
+FROM node:alpine
 
-COPY package.json yarn.lock  /usr/src/app/
-RUN yarn install --production
+# create & set working directory
+RUN mkdir -p /usr/src
+WORKDIR /usr/src
 
-COPY ecosystem.config.js tsconfig.json  /usr/src/app/
-COPY tsconfig.json  /user/src/app/dist/
+# copy source files
+COPY . /usr/src
 
-COPY src/  /usr/src/app/src/
-COPY dist/  /usr/src/app/dist/
+# install dependencies
+RUN npm install
 
-ENV NODE_ENV production
-
-EXPOSE 80
-
-CMD ["yarn", "start"]
+# start app
+RUN npm run build
+EXPOSE 3000
+CMD npm run start
