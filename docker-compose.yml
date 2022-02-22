@@ -1,0 +1,8 @@
+version: '3.7'
+
+services:
+  redis:
+    container_name: aws-ssr
+    image: redis
+    ports:
+      - '54359:6379'
