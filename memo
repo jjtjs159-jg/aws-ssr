@@ -1,0 +1,2 @@
+502 Bad gateway    
+ELB의 대상포트에 대한 health check를 추가했어야 했다.    
